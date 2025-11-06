@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard de Consumo e Bilhetagem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-primary': '#F9FAFB', // Light Gray background
+              'brand-secondary': '#FFFFFF', // White for cards
+              'brand-accent': '#0073ea',   // Monday Blue
+              'brand-accent-hover': '#0060c7', // Dark Blue
+              'brand-accent-light': '#e1e9f8', // Light Blue
+              'brand-success': '#00d2d2', // Success
+              'brand-text-primary': '#1F2937', // Dark Gray for text
+              'brand-text-secondary': '#6B7281', // Medium Gray for secondary text
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "recharts": "https://aistudiocdn.com/recharts@^3.3.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "date-fns/": "https://aistudiocdn.com/date-fns@^4.1.0/",
+    "date-fns": "https://aistudiocdn.com/date-fns@^4.1.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-brand-primary text-brand-text-primary">
+    <div id="root"></div>
+  </body>
+</html>

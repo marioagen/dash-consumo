@@ -1,0 +1,5 @@
+{
+  "name": "Consumption and Billing Dashboard",
+  "description": "A dashboard for clients of a low-code/no-code platform to analyze their resource consumption and billing information. It provides clear visualizations for AI token usage, document processing, and workflow executions.",
+  "requestFramePermissions": []
+}
