@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import type { DailyConsumption, Plan } from '../types';
 import MetricCard from './MetricCard';
 import ConsumptionChart from './ConsumptionChart';
+import Tooltip from './Tooltip';
+import InfoIcon from './InfoIcon';
 
 interface OcrConsumptionProps {
   data: DailyConsumption[];
@@ -26,7 +28,12 @@ const OcrConsumption: React.FC<OcrConsumptionProps> = ({ data, plan }) => {
 
   return (
     <div className="bg-brand-secondary p-6 rounded-xl border border-gray-200 shadow-sm">
-      <h2 className="text-xl font-semibold mb-4">Páginas de Documento Processadas (OCR)</h2>
+      <div className="flex items-center gap-1.5 mb-4">
+        <h2 className="text-xl font-semibold">Páginas de Documento Processadas (OCR)</h2>
+        <Tooltip content="Quantidade de páginas de documentos que passaram pelo processo de Reconhecimento Óptico de Caracteres (OCR), que converte imagens de texto em texto editável.">
+            <InfoIcon />
+        </Tooltip>
+      </div>
       <div className="flex flex-col md:flex-row gap-6 mb-6">
         <MetricCard
           title="Total de Páginas Processadas"

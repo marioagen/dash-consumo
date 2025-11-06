@@ -1,4 +1,6 @@
 import React from 'react';
+import Tooltip from './Tooltip';
+import InfoIcon from './InfoIcon';
 
 interface TotalCostCardProps {
   totalCost: number;
@@ -13,11 +15,13 @@ const TotalCostCard: React.FC<TotalCostCardProps> = ({ totalCost }) => {
 
   return (
     <div className="bg-brand-secondary p-6 rounded-xl border border-gray-200 shadow-sm text-center">
-      <h2 className="text-sm font-medium text-brand-text-secondary uppercase tracking-wider">Total WTC</h2>
+      <div className="flex items-center justify-center gap-1.5">
+        <h2 className="text-sm font-medium text-brand-text-secondary uppercase tracking-wider">Total WTC</h2>
+        <Tooltip content="WTC (Woopi Total Cost) é a soma ponderada do consumo no período selecionado, baseada nos multiplicadores do seu plano. Este não é um valor financeiro.">
+            <InfoIcon />
+        </Tooltip>
+      </div>
       <p className="text-4xl font-bold text-brand-accent my-2">{formattedTotal}</p>
-      <p className="text-xs text-brand-text-secondary">
-        Soma ponderada do consumo no período selecionado. Este não é um valor financeiro.
-      </p>
     </div>
   );
 };

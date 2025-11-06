@@ -2,6 +2,8 @@ import React, { useState, useMemo, useEffect } from 'react';
 import type { DailyConsumption, Plan } from '../types';
 import MetricCard from './MetricCard';
 import ConsumptionChart from './ConsumptionChart';
+import Tooltip from './Tooltip';
+import InfoIcon from './InfoIcon';
 
 interface TokenConsumptionProps {
   data: DailyConsumption[];
@@ -77,7 +79,12 @@ const TokenConsumption: React.FC<TokenConsumptionProps> = ({ data, plan }) => {
   return (
     <div className="bg-brand-secondary p-6 rounded-xl border border-gray-200 shadow-sm">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
-        <h2 className="text-xl font-semibold">Consumo de Tokens de IA</h2>
+        <div className="flex items-center gap-1.5">
+          <h2 className="text-xl font-semibold">Consumo de Tokens de IA</h2>
+          <Tooltip content="Visualização do consumo de tokens para os diferentes modelos de Inteligência Artificial. Tokens são as unidades de processamento de texto utilizadas pelos modelos.">
+            <InfoIcon />
+          </Tooltip>
+        </div>
         <div className="w-full sm:w-auto flex items-center justify-center gap-3 sm:gap-4" aria-label="Navegação de modelos de IA">
            <button
              onClick={() => handleModelChange('prev')}

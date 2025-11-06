@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import type { DailyConsumption, Plan } from '../types';
 import MetricCard from './MetricCard';
 import ConsumptionChart from './ConsumptionChart';
+import Tooltip from './Tooltip';
+import InfoIcon from './InfoIcon';
 
 interface WorkflowConsumptionProps {
   data: DailyConsumption[];
@@ -32,7 +34,12 @@ const WorkflowConsumption: React.FC<WorkflowConsumptionProps> = ({ data, plan })
   return (
     <div className="bg-brand-secondary p-6 rounded-xl border border-gray-200 shadow-sm space-y-8">
       <div>
-        <h2 className="text-xl font-semibold mb-4">Execuções de Workflows N8N</h2>
+        <div className="flex items-center gap-1.5 mb-4">
+            <h2 className="text-xl font-semibold">Execuções de Workflows N8N</h2>
+            <Tooltip content="Número de vezes que os fluxos de automação criados na plataforma N8N foram executados.">
+                <InfoIcon />
+            </Tooltip>
+        </div>
         <MetricCard
           title="Total de Execuções N8N"
           value={n8nTotal.toLocaleString('pt-BR')}
@@ -50,7 +57,12 @@ const WorkflowConsumption: React.FC<WorkflowConsumptionProps> = ({ data, plan })
       </div>
       
       <div className="border-t border-gray-200 pt-8">
-        <h2 className="text-xl font-semibold mb-4">Execuções de Workflows Woopi AI</h2>
+        <div className="flex items-center gap-1.5 mb-4">
+            <h2 className="text-xl font-semibold">Execuções de Workflows Woopi AI</h2>
+            <Tooltip content="Número de vezes que os fluxos de automação criados na plataforma Woopi AI foram executados.">
+                <InfoIcon />
+            </Tooltip>
+        </div>
         <MetricCard
           title="Total de Execuções Woopi AI"
           value={woopiTotal.toLocaleString('pt-BR')}

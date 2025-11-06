@@ -10,9 +10,11 @@ import OcrConsumption from './components/OcrConsumption';
 import WorkflowConsumption from './components/WorkflowConsumption';
 import TotalCostCard from './components/TotalCostCard';
 import { filterDataByDateRange } from './utils/dataUtils';
+import RefreshButton from './components/RefreshButton';
 
 const App: React.FC = () => {
   const [period, setPeriod] = useState<PeriodOption>('this_month');
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const today = useMemo(() => new Date(), []);
   
   const getDateRange = (periodOption: PeriodOption): [Date, Date] => {
@@ -60,6 +62,15 @@ const App: React.FC = () => {
     const newRange: [Date, Date] = [newStartDate, newEndDate];
     setCustomDateRange(newRange);
     setDateRange(newRange);
+  };
+  
+  const handleRefresh = () => {
+    setIsRefreshing(true);
+    // Simulate data fetching
+    setTimeout(() => {
+      console.log('Data refreshed');
+      setIsRefreshing(false);
+    }, 1000);
   };
 
   const filteredData = useMemo(() => {
@@ -132,14 +143,17 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-brand-primary p-4 sm:p-6 lg:p-8 font-sans">
       <div className="max-w-7xl mx-auto space-y-6">
         <Header client={clientData.client} plan={clientData.plan} />
-        <div className="flex flex-wrap items-start sm:items-center gap-4 justify-between">
-          <PeriodFilter 
-            selectedPeriod={period} 
-            onPeriodChange={handlePeriodChange} 
-            customStartDate={customDateRange[0]}
-            customEndDate={customDateRange[1]}
-            onCustomDateChange={handleCustomDateChange}
-          />
+        <div className="flex flex-wrap items-center gap-4 justify-between">
+          <div className="flex items-center gap-2">
+            <PeriodFilter 
+              selectedPeriod={period} 
+              onPeriodChange={handlePeriodChange} 
+              customStartDate={customDateRange[0]}
+              customEndDate={customDateRange[1]}
+              onCustomDateChange={handleCustomDateChange}
+            />
+            <RefreshButton onClick={handleRefresh} loading={isRefreshing} />
+          </div>
           <ExportButton onClick={handleExportCSV} disabled={filteredData.length === 0} />
         </div>
         
