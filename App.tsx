@@ -85,10 +85,10 @@ const App: React.FC = () => {
       }, 0);
 
       const ocrCost = day.ocrPages * clientData.plan.multipliers.ocrPages;
-      const n8nCost = day.n8nExecutions * clientData.plan.multipliers.n8nExecutions;
+      const aiAutomationCost = day.aiAutomationExecutions * clientData.plan.multipliers.aiAutomationExecutions;
       const woopiAiCost = day.woopiAiExecutions * clientData.plan.multipliers.woopiAiExecutions;
       
-      return total + tokensCost + ocrCost + n8nCost + woopiAiCost;
+      return total + tokensCost + ocrCost + aiAutomationCost + woopiAiCost;
     }, 0);
   }, [filteredData, clientData.plan.multipliers]);
 
@@ -98,7 +98,7 @@ const App: React.FC = () => {
       return;
     }
 
-    const headers = ['Date', 'Model', 'Tokens', 'OCR Pages', 'N8N Executions', 'Woopi AI Executions'];
+    const headers = ['Date', 'Model', 'Tokens', 'OCR Pages', 'Execuções de Automação de IA', 'Woopi AI Executions'];
     
     const rows = filteredData.flatMap(day => {
       if (day.tokens && day.tokens.length > 0) {
@@ -107,7 +107,7 @@ const App: React.FC = () => {
           `"${tokenUsage.model}"`,
           tokenUsage.tokens.toString(),
           day.ocrPages.toString(),
-          day.n8nExecutions.toString(),
+          day.aiAutomationExecutions.toString(),
           day.woopiAiExecutions.toString(),
         ]);
       }
@@ -116,7 +116,7 @@ const App: React.FC = () => {
         'N/A',
         '0',
         day.ocrPages.toString(),
-        day.n8nExecutions.toString(),
+        day.aiAutomationExecutions.toString(),
         day.woopiAiExecutions.toString(),
       ]];
     });

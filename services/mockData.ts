@@ -11,7 +11,7 @@ const generateDailyData = (date: Date): DailyConsumption => {
       tokens: Math.floor(Math.random() * 50000) + 1000,
     })),
     ocrPages: Math.floor(Math.random() * 200) + 10,
-    n8nExecutions: Math.floor(Math.random() * 500) + 50,
+    aiAutomationExecutions: Math.floor(Math.random() * 500) + 50,
     woopiAiExecutions: Math.floor(Math.random() * 300) + 30,
   };
 };
@@ -29,7 +29,7 @@ export const enterprisePlan: Plan = {
     'gpt-4o-mini': 0.000005,
     'gemini-1.5-pro': 0.000012,
     ocrPages: 0.08,
-    n8nExecutions: 0.04,
+    aiAutomationExecutions: 0.04,
     woopiAiExecutions: 0.06,
   },
 };

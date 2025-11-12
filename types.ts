@@ -8,14 +8,14 @@ export interface DailyConsumption {
   date: string;
   tokens: TokenUsage[];
   ocrPages: number;
-  n8nExecutions: number;
+  aiAutomationExecutions: number;
   woopiAiExecutions: number;
 }
 
 export interface PlanMultipliers {
   [key: string]: number; // e.g., 'gpt-4o': 0.00001, 'ocrPage': 0.1
   ocrPages: number;
-  n8nExecutions: number;
+  aiAutomationExecutions: number;
   woopiAiExecutions: number;
 }
 

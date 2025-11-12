@@ -11,22 +11,22 @@ interface WorkflowConsumptionProps {
 }
 
 const WorkflowConsumption: React.FC<WorkflowConsumptionProps> = ({ data, plan }) => {
-  const { n8nTotal, woopiTotal, n8nChartData, woopiChartData } = useMemo(() => {
-    let n8nSum = 0;
+  const { aiAutomationTotal, woopiTotal, aiAutomationChartData, woopiChartData } = useMemo(() => {
+    let aiAutomationSum = 0;
     let woopiSum = 0;
-    const n8nDaily = data.map(day => {
-      n8nSum += day.n8nExecutions;
-      return { date: day.date, executions: day.n8nExecutions };
+    const aiAutomationDaily = data.map(day => {
+      aiAutomationSum += day.aiAutomationExecutions;
+      return { date: day.date, executions: day.aiAutomationExecutions };
     });
     const woopiDaily = data.map(day => {
       woopiSum += day.woopiAiExecutions;
       return { date: day.date, executions: day.woopiAiExecutions };
     });
-    return { n8nTotal: n8nSum, woopiTotal: woopiSum, n8nChartData: n8nDaily, woopiChartData: woopiDaily };
+    return { aiAutomationTotal: aiAutomationSum, woopiTotal: woopiSum, aiAutomationChartData: aiAutomationDaily, woopiChartData: woopiDaily };
   }, [data]);
 
-  const n8nUnitValue = plan.multipliers.n8nExecutions;
-  const n8nTotalizerValue = useMemo(() => n8nTotal * n8nUnitValue, [n8nTotal, n8nUnitValue]);
+  const aiAutomationUnitValue = plan.multipliers.aiAutomationExecutions;
+  const aiAutomationTotalizerValue = useMemo(() => aiAutomationTotal * aiAutomationUnitValue, [aiAutomationTotal, aiAutomationUnitValue]);
 
   const woopiUnitValue = plan.multipliers.woopiAiExecutions;
   const woopiTotalizerValue = useMemo(() => woopiTotal * woopiUnitValue, [woopiTotal, woopiUnitValue]);
@@ -35,22 +35,22 @@ const WorkflowConsumption: React.FC<WorkflowConsumptionProps> = ({ data, plan })
     <div className="bg-brand-secondary p-6 rounded-xl border border-gray-200 shadow-sm space-y-8">
       <div>
         <div className="flex items-center gap-1.5 mb-4">
-            <h2 className="text-xl font-semibold">Execuções de Workflows N8N</h2>
-            <Tooltip content="Número de vezes que os fluxos de automação criados na plataforma N8N foram executados.">
+            <h2 className="text-xl font-semibold">Execuções de Workflows de Automação de IA</h2>
+            <Tooltip content="Número de vezes que os fluxos de automação de IA foram executados.">
                 <InfoIcon />
             </Tooltip>
         </div>
         <MetricCard
-          title="Total de Execuções N8N"
-          value={n8nTotal.toLocaleString('pt-BR')}
-          cost={`Valor unitário no plano atual: ${n8nUnitValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 8 })}`}
-          totalizerValue={n8nTotalizerValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+          title="Total de Execuções de Automação de IA"
+          value={aiAutomationTotal.toLocaleString('pt-BR')}
+          cost={`Valor unitário no plano atual: ${aiAutomationUnitValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 8 })}`}
+          totalizerValue={aiAutomationTotalizerValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         />
         <div className="mt-4">
           <ConsumptionChart 
-            data={n8nChartData} 
+            data={aiAutomationChartData} 
             dataKey="executions" 
-            dataName="Execuções N8N"
+            dataName="Execuções de Automação de IA"
             color="#00438f"
           />
         </div>
